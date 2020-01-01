@@ -1,16 +1,33 @@
 import React from 'react';
 
 class Popular extends React.Component {
-    render() {
+    constructor(props) {
+        super(props);
 
-        const languages = ['All', 'JavaScript', 'Ruby', 'Python', 'CSS']
+        this.state = {
+            selectedLanguage: 'All',
+        };
+        
+        this.updateLanguage = this.updateLanguage.bind(this)
+    };
+
+    updateLanguage = (selectedLanguage) => {
+        this.setState({
+            selectedLanguage
+        });
+    };
+
+    render() {
+        const languages = ['All', 'JavaScript', 'Ruby', 'Python', 'CSS'];
 
         return (
             <>
                 <ul className="flex-center">
                     {languages.map((language) => (
                         <li key={ language }>
-                            <button className="btn-clear nav-link">
+                            <button className="btn-clear nav-link"
+                            onClick={() => this.updateLanguage(language)} 
+                            >
                                 { language }
                             </button>
                         </li>
