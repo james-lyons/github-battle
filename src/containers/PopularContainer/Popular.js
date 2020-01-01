@@ -1,4 +1,7 @@
 import React from 'react';
+import LanguagesNav from '../../components/LanguagesNav/languagesNav';
+import { fetchPopularRepos } from '../../utils/api';
+import ReposGrid from '../../components/ReposGrid/ReposGrid';
 
 class Popular extends React.Component {
     constructor(props) {
@@ -6,33 +9,60 @@ class Popular extends React.Component {
 
         this.state = {
             selectedLanguage: 'All',
+            repos: {},
+            error: null
         };
         
-        this.updateLanguage = this.updateLanguage.bind(this)
+        this.updateLanguage = this.updateLanguage.bind(this);
+        this.isLoading = this.isLoading.bind(this);
     };
 
-    updateLanguage = (selectedLanguage) => {
+    componentDidMount() {
+        this.updateLanguage(this.state.selectedLanguage)
+    };
+
+    updateLanguage(selectedLanguage) {
         this.setState({
-            selectedLanguage
+            selectedLanguage,
+            error: null,
         });
+
+        if (!this.state.repos[selectedLanguage]) {           
+            fetchPopularRepos(selectedLanguage)
+                .then((data) => {
+                    this.setState(({ repos }) => ({
+                        repos: {
+                            ...repos,
+                            [selectedLanguage]: data
+                        }
+                    }));
+                })
+                .catch(() => {
+                    console.warn('Error fetching repos:', error);
+                    this.setState({
+                        error: 'There was an error fetching the repositories'
+                    });
+                });
+        };
+    };
+
+    isLoading() {
+        const { selectedLanguage, repos, error } = this.state;
+        return !repos[selectedLanguage] && error === null
     };
 
     render() {
-        const languages = ['All', 'JavaScript', 'Ruby', 'Python', 'CSS'];
+        const { selectedLanguage, repos, error } = this.state;
 
         return (
             <>
-                <ul className="flex-center">
-                    {languages.map((language) => (
-                        <li key={ language }>
-                            <button className="btn-clear nav-link"
-                            onClick={() => this.updateLanguage(language)} 
-                            >
-                                { language }
-                            </button>
-                        </li>
-                    ))}
-                </ul>
+                <LanguagesNav
+                    selected={ selectedLanguage }
+                    onUpdateLanguage={ this.updateLanguage }
+                />
+                { this.isLoading() && <p>Loading</p> }
+                { error && <p>{ error }</p> }
+                { repos[selectedLanguage] && <ReposGrid repos={ repos[selectedLanguage] }/>}
             </>
         );
     };
