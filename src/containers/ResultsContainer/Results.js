@@ -3,8 +3,9 @@ import { battle } from '../../utils/api';
 import Card from '../../components/CardComponent/Card';
 import ProfileList from '../../components/ProfileListComponent/ProfileList';
 import LoadingBar from '../LoadingBarContainer/LoadingBar';
-import Tooltip from '../TooltipContainer/Tooltip';
 import PropTypes from 'prop-types';
+import queryString from 'query-string'
+import { Link } from 'react-router-dom'
 
 class Results extends React.Component {
     constructor(props) {
@@ -18,7 +19,7 @@ class Results extends React.Component {
     };
 
     componentDidMount() {
-        const { playerOne, playerTwo } = this.props;
+        const { playerOne, playerTwo } = queryString.parse(this.props.location.search);
 
         battle([ playerOne, playerTwo ])
             .then((players) => {
@@ -71,12 +72,12 @@ class Results extends React.Component {
                         <ProfileList profile={ loser.profile }/>
                     </Card>
                 </div>
-                <button
-                    onClick={ this.props.onReset }
+                <Link
                     className='btn dark-btn btn-space'
+                    to='/battle'
                 >
                     Reset
-                </button>
+                </Link>
             </>
         );
     };

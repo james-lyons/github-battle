@@ -3,6 +3,7 @@ import InstructionsComponent from '../../components/InstructionsComponent/Instru
 import PlayerInput from '../PlayerInputContainer/PlayerInput';
 import PlayerPreview from '../../components/PlayerPreviewComponent/PlayerPreview';
 import Results from '../ResultsContainer/Results';
+import { Link } from 'react-router-dom';
 
 class Battle extends React.Component {
     constructor(props) {
@@ -29,21 +30,7 @@ class Battle extends React.Component {
     };
 
     render() {
-        const { playerOne, playerTwo, battle } = this.state;
-
-        if (battle === true) {
-            return (
-                <Results
-                    playerOne={ playerOne }
-                    playerTwo={ playerTwo }
-                    onReset={() => this.setState({
-                        playerOne: null,
-                        playerTwo: null,
-                        battle: false
-                    })}
-                />
-            );
-        };
+        const { playerOne, playerTwo } = this.state;
 
         return (
             <>
@@ -79,11 +66,15 @@ class Battle extends React.Component {
                     </div>
                 </div>
                 { playerOne && playerTwo && (
-                    <button className="btn btn-dark btn-space"
-                        onClick={() => this.setState({ battle: true })
-                        }>
-                            Battle!
-                    </button>
+                    <Link
+                        className="btn btn-dark btn-space"
+                        to={{
+                            pathname: `/battle/results`,
+                            search: `?playerOne=${ playerOne }&playerTwo=${ playerTwo }`
+                        }}
+                    >
+                        Battle!
+                    </Link>
                 )}
             </>
         );

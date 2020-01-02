@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FaTimesCircle } from 'react-icons/fa'
+import { ThemeConsumer } from '../../contexts/theme';
+import { FaTimesCircle } from 'react-icons/fa';
 
 const PlayerPreview = ({ username, label, onReset}) => {
     return (
