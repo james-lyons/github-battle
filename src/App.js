@@ -1,7 +1,8 @@
 import React from 'react';
 import Popular from './containers/PopularContainer/Popular';
 import Battle from './containers/BattleContainer/Battle';
-import { ThemeProver } from './contexts/theme';
+import Nav from './components/NavBarComponent/NavBar';
+import { ThemeProvider } from './contexts/theme';
 
 class App extends React.Component {
     constructor(props) {
@@ -18,12 +19,15 @@ class App extends React.Component {
 
     render() {
         return (
-            <ThemeProver value={ this.state }>
-                <div className='container'>
-                    <Battle />
-                    <Popular />
+            <ThemeProvider value={ this.state }>
+                <div className={this.state.theme}>
+                    <div className='container'>
+                        <Nav />
+                        <Battle />
+                        <Popular />
+                    </div>
                 </div>
-            </ThemeProver>
+            </ThemeProvider>
         );
     };
 };

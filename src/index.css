@@ -3,42 +3,58 @@ html, body, #app {
   height: 100%;
   width: 100%;
 }
+
 body {
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
 }
+
 ul {
   padding: 0;
 }
+
 li {
   list-style-type: none;
 }
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 50px;
 }
+
 .flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+.dark {
+  color: #DADADA;
+  background: #1c2022;
+  min-height: 100%;
+}
+
 .btn-clear {
   border: none;
   background: transparent;
 }
+
 .nav-link {
   font-size: 18px;
   font-weight: bold;
   text-decoration: none;
   color: inherit;
 }
+
 .grid {
   display: flex;
   flex-wrap: wrap;
 }
+
 .space-around {
   justify-content: space-around;
 }
+
 .header-lg {
   font-size: 35px;
   font-weight: 300;
@@ -58,34 +74,62 @@ li {
   margin: 0 auto;
   display: block;
 }
+
 .center-text {
   text-align: center;
 }
+
 .link {
   color: rgb(187, 46, 31);
   text-decoration: none;
   font-weight: bold;
 }
+
 .card-list {
   margin: 20px 0;
   font-size: 20px;
 }
+
 .card-list li {
   display: flex;
   align-items: center;
   margin: 10px;
 }
+
 .card-list svg {
   margin-right: 10px;
 }
+
 .card-list a {
   font-weight: 500;
   color: inherit;
 }
+
 .bg-light {
   background: rgba(0, 0, 0, 0.08);
   border-radius: 3px;
 }
+
+.bg-dark {
+  background: rgb(36, 40, 42);
+  border-radius: 3px;
+}
+
+.player-inputs .input-dark {
+  color: #DADADA;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.light-btn {
+  color: #000;
+  background: #aaa8a8;
+}
+
+.light-btn:disabled {
+  background: #292929;
+  color: #4a4a4a;
+}
+
 .card {
   margin: 10px 0;
   width: 250px;
