@@ -6,24 +6,19 @@ import Results from '../ResultsContainer/Results';
 import { Link } from 'react-router-dom';
 
 class Battle extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            playerOne: null,
-            playerTwo: null,
-            battle: false
-        };
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleReset = this.handleReset.bind(this);
+    state = {
+        playerOne: null,
+        playerTwo: null,
+        battle: false
     };
 
-    handleSubmit(id, player) {
+    handleSubmit = (id, player) => {
         this.setState({
             [id]: player
         });
     };
 
-    handleReset(id) {
+    handleReset = (id) => {
         this.setState({
             [id]: null
         });

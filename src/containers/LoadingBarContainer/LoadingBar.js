@@ -13,15 +13,12 @@ const styles = {
 };
 
 class LoadingBar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            content: props.text,
-        };
+    state = {
+        content: this.props.text,
     };
 
-    componentDidMount() {
-        const { speed, text } = this.props
+    componentDidMount = () => {
+        const { speed, text } = this.props;
 
         this.interval = window.setInterval(() => {
           this.state.content === text + '...'
@@ -30,7 +27,7 @@ class LoadingBar extends React.Component {
         }, speed)
     };
 
-    componentWillUnmount () {
+    componentWillUnmount = () => {
         window.clearInterval(this.interval);
     };
 
