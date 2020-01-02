@@ -33,7 +33,15 @@ class Battle extends React.Component {
 
         if (battle === true) {
             return (
-                <Results playerOne={ playerOne } playerTwo={ playerTwo }/>
+                <Results
+                    playerOne={ playerOne }
+                    playerTwo={ playerTwo }
+                    onReset={() => this.setState({
+                        playerOne: null,
+                        playerTwo: null,
+                        battle: false
+                    })}
+                />
             );
         };
 
@@ -70,7 +78,7 @@ class Battle extends React.Component {
                         }
                     </div>
                 </div>
-                {playerOne && playerTwo && (
+                { playerOne && playerTwo && (
                     <button className="btn btn-dark btn-space"
                         onClick={() => this.setState({ battle: true })
                         }>

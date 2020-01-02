@@ -10,13 +10,13 @@ const PlayerPreview = ({ username, label, onReset}) => {
                 <div className='player-info'>
                     <img
                         className='avatar-small'
-                        src={`https://github.com/${username}.png?size=200`}
-                        alt={`Avatar for ${username}`}
+                        src={`https://github.com/${ username }.png?size=200`}
+                        alt={`Avatar for ${ username }`}
                     />
                     <a
-                        href={`https://github.com/${username}`}
+                        href={`https://github.com/${ username }`}
                         className='link'>
-                            {username}
+                            { username }
                     </a>
                 </div>
             <button className='btn-clear flex-center' onClick={onReset}>
@@ -28,7 +28,7 @@ const PlayerPreview = ({ username, label, onReset}) => {
 };
 
 PlayerPreview.propTypes = {
-    userName: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     onReset: PropTypes.func.isRequired
 };

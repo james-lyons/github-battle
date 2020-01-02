@@ -1,7 +1,8 @@
 import React from 'react';
 import LanguagesNav from '../../components/LanguagesNav/languagesNav';
-import { fetchPopularRepos } from '../../utils/api';
 import ReposGrid from '../../components/ReposGrid/ReposGrid';
+import LoadingBar from '../LoadingBarContainer/LoadingBar';
+import { fetchPopularRepos } from '../../utils/api';
 
 class Popular extends React.Component {
     constructor(props) {
@@ -60,8 +61,8 @@ class Popular extends React.Component {
                     selected={ selectedLanguage }
                     onUpdateLanguage={ this.updateLanguage }
                 />
-                { this.isLoading() && <p>Loading</p> }
-                { error && <p>{ error }</p> }
+                { this.isLoading() && <LoadingBar text='Fetching Repos' /> }
+                { error && <p className='center-text error'>{ error }</p> }
                 { repos[selectedLanguage] && <ReposGrid repos={ repos[selectedLanguage] }/>}
             </>
         );
