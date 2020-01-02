@@ -3,6 +3,7 @@ import { battle } from '../../utils/api';
 import Card from '../../components/CardComponent/Card';
 import ProfileList from '../../components/ProfileListComponent/ProfileList';
 import LoadingBar from '../LoadingBarContainer/LoadingBar';
+import Tooltip from '../TooltipContainer/Tooltip';
 import PropTypes from 'prop-types';
 
 class Results extends React.Component {
