@@ -14,7 +14,7 @@ module.exports = {
             { test: /\.css$/, use: ['style-loader', 'css-loader'] }
         ]
     },
-    mode: 'development',
+    mode: process.env_NODE_ENV === 'production' ? 'production' : 'development',
     plugins: [
         new HtmlWebpackPlugin({
             template: 'public/index.html'
@@ -23,4 +23,4 @@ module.exports = {
     devServer: {
         historyApiFallback: true
     }
-}
+};
